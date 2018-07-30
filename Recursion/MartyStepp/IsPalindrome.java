@@ -1,5 +1,6 @@
 package Recursion.MartyStepp;
-
+/*
+* Ask for is string complete lower case */
 public class IsPalindrome {
     public static void main(String args[]) {
         System.out.print(isPalindrome("Archana"));

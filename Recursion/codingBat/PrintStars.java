@@ -1,4 +1,4 @@
-package Recursion.MartyStepp;
+package Recursion.codingBat;
 
 public class PrintStars {
     public static void main(String[] args){
