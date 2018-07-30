@@ -2,8 +2,9 @@ package Recursion.MartyStepp;
 
 public class Exponent {
     public static void main(String args[]){
-        System.out.print(exponent(2,5));
+        System.out.println(exponent(2,5));
         System.out.println(exponentOptimiseed(2,4));
+        System.out.println(exponentIterative(2,5));
     }
     /* 2^5         32
           2*(2^4)    2*16
@@ -34,5 +35,13 @@ public class Exponent {
           return value*value;
         }
         return value*value*base;
+    }
+
+    static int exponentIterative(int base,int expo){
+        int power = 1;
+        for (int i = 1 ;i <= expo;++i){
+            power = power*base;
+        }
+        return power;
     }
 }
