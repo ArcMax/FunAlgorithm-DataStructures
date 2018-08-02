@@ -2,7 +2,8 @@ package Recursion.MartyStepp;
 
 public class printBinary {
     public static void main(String[] args) {
-        printBinaryOfNumber(43);
+//        printBinaryOfNumber(43);
+        printBinary(2,"");
     }
 
     /*
@@ -26,4 +27,48 @@ public class printBinary {
         System.out.println(lastDigit + "  print binary  :  " + n);
         return;
     }
+
+
+    /*Write a recursive function printBinary that accepts integer number of digits &
+     * print all binary number that have exactly that many digits, in accending order one per line*/
+
+    /*Example
+     * printBinary(2)
+     *   00
+     *   01
+     *   10
+     *   11
+     *
+     *  PrintBinary(3)
+     *    000
+     *    001
+     *    010
+     *    011
+     *    100
+     *    101
+     *    110
+     *    111
+     *
+     *    */
+
+    static void printBinary(int digit, String prefix) {
+        System.out.println("printBinary("+digit+","+prefix+")");
+        //basecase
+        if (digit == 0) {
+            System.out.print(prefix+" --");
+        } else {
+            printBinary(digit - 1, prefix + "0");
+            printBinary(digit - 1, prefix + "1");
+        }
+    }
+
+    /*
+    * printBinary(2,)
+            printBinary(1,0)
+                    printBinary(0,00)
+                    printBinary(0,01)-- 00
+            printBinary(1,1) -- 01
+                    printBinary(0,10)
+                    printBinary(0,11) -- 10
+                    11 --*/
 }
