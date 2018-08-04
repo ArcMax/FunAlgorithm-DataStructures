@@ -1,4 +1,4 @@
-package Recursion.MartyStepp;
+package Recursion.Martystepp;
 
 public class Exponent {
     public static void main(String args[]){

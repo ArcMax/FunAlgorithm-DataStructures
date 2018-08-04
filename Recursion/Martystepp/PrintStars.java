@@ -1,4 +1,4 @@
-package Recursion.codingBat;
+package Recursion.Martystepp;
 
 public class PrintStars {
     public static void main(String[] args){

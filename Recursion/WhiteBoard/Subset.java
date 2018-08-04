@@ -2,15 +2,13 @@ package Recursion.WhiteBoard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Subset {
     public static void main(String args[]) {
         Subset subset = new Subset();
         System.out.println(Arrays.toString(subset.generate_all_subsets("abc")));
-        List<String> out = new ArrayList<>();
-        subset.printAllsubset("abc", 0, out);
-        System.out.println(out);
+
+        System.out.println(subset.printAllsubset("abc"));
     }
 
     public String[] generate_all_subsets(String s) {
@@ -59,23 +57,29 @@ public class Subset {
      * */
 
 
-    public String printAllsubset(String str, int pre, List<String> out) {
+    public ArrayList<String> printAllsubset(String str) {
+        ArrayList<String> out = new ArrayList<>();   //not good way of dealing with memory always use helper funtion to pass result array
         //base case
-        if (str == "" || str.length() <= 1) return str;
+        if (str.length() == 0) {
+            out.add(str);
+            return out;
+        }
 
-        char prefix = str.charAt(pre);
-        //shrink
-        String sub = printAllsubset(str.substring(1), pre + 1, out);
+        char prefix = str.charAt(0);
+        //shrink & recurse
+        ArrayList<String> sub = printAllsubset(str.substring(1));
         //grow
-        out.add(sub);
-        out.add(prefix + sub);
-        return sub;
+        for (String k : sub) {
+            out.add(k);
+            out.add(prefix + k);
+        }
+        return out;
     }
 }
 
 
 
-/*
+/*     Decode String
  *                123    [abc,lc,aw]
  *       `         abc
  *

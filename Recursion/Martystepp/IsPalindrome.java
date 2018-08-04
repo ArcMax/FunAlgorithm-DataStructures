@@ -1,4 +1,4 @@
-package Recursion.MartyStepp;
+package Recursion.Martystepp;
 /*
 * Ask for is string complete lower case */
 public class IsPalindrome {
