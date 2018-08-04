@@ -12,6 +12,8 @@ public class Permute {
         permute(input,choosen);
     }
     static void permute(StringBuilder str, StringBuilder choosen){
+        indent(choosen.length());
+        System.out.println("allCombinationOfLenghtK: ("+ str +" , "+ choosen+")");
         if(str.length() == 0){
             System.out.println(choosen);
         }
@@ -29,4 +31,9 @@ public class Permute {
         }
     }
 
+    static void indent(int n){
+        for (int i = 0; i < n ; i++) {
+            System.out.print("---------");
+        }
+    }
 }

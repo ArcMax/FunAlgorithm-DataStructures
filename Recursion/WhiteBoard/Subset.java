@@ -7,7 +7,7 @@ public class Subset {
     public static void main(String args[]) {
         Subset subset = new Subset();
         System.out.println(Arrays.toString(subset.generate_all_subsets("abc")));
-
+        ArrayList<String> out = new ArrayList<>();
         System.out.println(subset.printAllsubset("abc"));
     }
 

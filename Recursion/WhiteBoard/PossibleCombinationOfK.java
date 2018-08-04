@@ -50,6 +50,7 @@ public class PossibleCombinationOfK {
     }
 
     static void allCombinationOfLenghtK(int n, StringBuilder choosen, int k) {
+
         if (n == k) {
             System.out.println(choosen);
         } else {
@@ -58,4 +59,5 @@ public class PossibleCombinationOfK {
             }
         }
     }
+
 }
