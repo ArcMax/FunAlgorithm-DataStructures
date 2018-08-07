@@ -1,4 +1,4 @@
-package Recursion.WhiteBoard;
+package Recursion.WhiteBoard.Week2;
 
 import java.util.Arrays;
 
