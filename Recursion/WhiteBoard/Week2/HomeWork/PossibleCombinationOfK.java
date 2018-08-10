@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class PossibleCombinationOfK {
     public static void main(String[] args) {
-//        allCombinationOfLenghtKMain(4, 2);
-        allcombinationMain(4, 2);
+        allCombinationOfLenghtKMain(4, 2);
+        allCombinationOfLenghtKIteratively(4, 2);
     }
 
     /*
@@ -48,51 +48,53 @@ public class PossibleCombinationOfK {
      * */
 
     static void allCombinationOfLenghtKMain(int n, int k) {
-        ArrayList<Integer> choosen = new ArrayList<>();
+        ArrayList<Integer> choosen = new ArrayList<>(k);
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> arr = new ArrayList<>(n);
         arr.add(1);
         arr.add(2);
         arr.add(3);
         arr.add(4);
-        allCombinationOfLenghtK(arr, choosen, k, result);
+        allCombinationOfLenghtK(n, choosen, k, 1, result);
         System.out.println(result);
     }
 
-    static void allCombinationOfLenghtK(ArrayList<Integer> n, ArrayList<Integer> choosen, int k, ArrayList<ArrayList<Integer>> result) {
-        //System.out.println(n+","+choosen+","+k+","+result);
+
+    static ArrayList<ArrayList<Integer>> allCombinationOfLenghtK(int n, ArrayList<Integer> choosen, int k, int j, ArrayList<ArrayList<Integer>> result) {
+
         if (k == 0) {
-            System.out.println(choosen);
-            return;
-        } else {
-            for (int i = 0; i < n.size(); i++) {
-                int l = n.get(i);
-                choosen.add(l);
-                n.remove(i);
-                allCombinationOfLenghtK(n, choosen, k - 1, result);
-                choosen.remove(choosen.size() - 1);
-                n.add(i, l);
-
-            }
+            ArrayList<Integer> fi = new ArrayList<>();
+            fi.addAll(choosen);
+            result.add(fi);
+            return result;
         }
-    }
 
-    static void allcombinationMain(int n, int k) {
-        ArrayList<Integer> choosen = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        allCombinations(n, 1, k, choosen, result,1);
-        System.out.println(result);
-    }
-
-    static void allCombinations(int n, int idx, int k, ArrayList<Integer> choosen, ArrayList<ArrayList<Integer>> result,int j) {
-        if (k == 0) {
-
-            result.add(choosen);
-            return;
-        }
-        for (; j <= n-k+1;++j) {
+        for (int i = 0; i < n && j <= n; i++, j++) {
+            //Grow
             choosen.add(j);
-            allCombinations(n, idx + 1, k - 1, choosen, result,j+1);
+            //Shrink & Recurse
+            allCombinationOfLenghtK(n, choosen, k - 1, j + 1, result);
+            //grow
+            choosen.remove(choosen.size() - 1);
+        }
+        return result;
+    }
+
+    //Iterative approach
+    static void allCombinationOfLenghtKIteratively(int n, int k) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 1; i < n-k+1 ; i++) {
+            arr.add(i);
+            for (int j = i + 1; j <= n; j++) {
+                if (arr.size() < 2) {
+                    arr.add(j);
+                    k--;
+                }
+                System.out.println(arr);
+                arr.remove(arr.size() - 1);
+            }
+            arr.remove(arr.size() - 1);
+            k--;
         }
     }
 

@@ -2,9 +2,9 @@ package Recursion.WhiteBoard.Week4;
 
 public class PartiallySortedMergeSort {
     public static void main(String args[]) {
-        int[] arr = {5, 6, 7, 8, 2, 3, 4};
-        System.out.println(findElementMain(arr, 5));
-        System.out.println(findElementIterativeMain(arr, 5));
+        int[] arr = {4,5,6,7,8,2,3};
+        System.out.println(findElementMain(arr, 8));
+        System.out.println(findElementIterativeMain(arr,8));
     }
 
     static int findElementMain(int[] arr, int target) {
@@ -23,6 +23,13 @@ public class PartiallySortedMergeSort {
      * unsorted4:[5,6,7,8,2,3,4]   5>4T   8>5T    8>4T     5=s
      *            -------
      *
+     * arr[start] >arr[mid] && target < arr[mid] go left
+       a
+     * target
+     * 3<s<m<e
+     * 3<s<m<e
+     * 3<s<=m<e
+     * 3<s>m<=e
      * */
     static int findElement(int[] arr, int target, int start, int end) {
         int mid = start + (end - start) / 2;
@@ -33,18 +40,25 @@ public class PartiallySortedMergeSort {
             System.out.println("inside base case");
             return -1;
         }
-        boolean in = inRange(arr, mid, target);
+        boolean in = inRange(arr, mid, start, end, target);
         if (in) {
+            System.out.println("left" + "mid:" + arr[mid] + "start" + arr[start] + "end" + arr[end]);
             return findElement(arr, target, start, mid - 1);
         } else {
+            System.out.println("right" + "mid:" + arr[mid] + "start" + arr[start] + "end" + arr[end]);
             return findElement(arr, target, mid + 1, end);
         }
     }
 
-    static boolean inRange(int[] arr, int mid, int target) {
-        if (target < arr[mid])
+    static boolean inRange(int[] arr, int mid, int start, int end, int target) {
+        //is 3 in between 5 & 7
+        //or in between 7 & 4
+        if ((target <= arr[mid])) {
+            System.out.println("inside if");
             return true;
+        }
         return false;
+
     }
 
     static int findElementIterativeMain(int[] arr, int target) {
@@ -55,19 +69,20 @@ public class PartiallySortedMergeSort {
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (target == arr[mid]) return mid;
-            boolean in = inRange(arr, mid, target);
-            if (in) {
-                                                    // /* if (arr[start] > target) {
-                end = mid-1;                        //       start = mid + 1;
-                                                    //     } else {
-                                            //OR    //           end = mid - 1;
-                                                    //     }*/
+            if (target < arr[mid]) {
+                if (arr[start] > target) {
+                    //end = mid - 1;
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
             } else {
-                                                    //     /* if (arr[end] < target) {
-                start = mid+1;                     //            end = mid - 1;
-                                              //OR  //        } else {
-                                                    //            start = mid + 1;
-                                                    //        }*/
+                if (arr[end] < target) {
+                    //start = mid + 1;
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
             }
         }
         return -1;
