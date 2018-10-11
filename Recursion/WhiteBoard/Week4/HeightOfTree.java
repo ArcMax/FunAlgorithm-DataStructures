@@ -1,7 +1,5 @@
 package Recursion.WhiteBoard.Week4;
 
-import Recursion.WhiteBoard.Week4.TreeNode;
-
 public class HeightOfTree {
     public static void main(String args[]){
         TreeNode root = new TreeNode(3);
