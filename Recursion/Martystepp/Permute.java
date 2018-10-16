@@ -6,6 +6,7 @@ public class Permute {
     public static void main(String args[]){
             permuteMain("abc");
     }
+
     static void permuteMain(String str){
        StringBuilder choosen = new StringBuilder();
        StringBuilder input = new StringBuilder(str);

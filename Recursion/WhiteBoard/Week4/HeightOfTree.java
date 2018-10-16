@@ -8,6 +8,7 @@ public class HeightOfTree {
         root.right.left = new TreeNode(2);
 
         System.out.println(height(root));
+        System.out.println(minDepth(root));
 
     }
     static int height(TreeNode root){
@@ -19,5 +20,18 @@ public class HeightOfTree {
             return left;            // less likely to hire in interview
         return right;*/
         return Math.max(left,right);//will hire in interview
+    }
+
+    static int minDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+
+        int leftDepth = minDepth(root.left);
+        int rightDepth = minDepth(root.right);
+
+        int min = Math.min(leftDepth,rightDepth);
+
+        return 1 + ((min > 0) ? min : Math.max(leftDepth,rightDepth));
     }
 }
